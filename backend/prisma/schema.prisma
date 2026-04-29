@@ -1,0 +1,46 @@
+// ==============================
+// DATABASE CONNECTION
+// ==============================
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==============================
+// PRISMA CLIENT
+// ==============================
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ==============================
+// EMPLOYEE MODEL
+// ==============================
+model Employee {
+  employeeId String   @id
+  name       String
+  email      String   @unique
+  department String
+
+  // relation
+  attendance Attendance[]
+
+  createdAt  DateTime @default(now())
+}
+
+
+// ==============================
+// ATTENDANCE MODEL
+// ==============================
+model Attendance {
+  id         Int      @id @default(autoincrement())
+
+  employeeId String
+  employee   Employee @relation(fields: [employeeId], references: [employeeId], onDelete: Cascade)
+
+  date       DateTime @default(now())
+  checkIn    DateTime
+  checkOut   DateTime?
+
+  createdAt  DateTime @default(now())
+}
