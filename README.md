@@ -1,105 +1,256 @@
-# HRMS Lite – Frontend
+# HRMS Lite – Full Stack Application
 
-Employee & Attendance Management System (React Frontend)
+Employee & Attendance Management System
 
-Live App:
-[https://hrms-lite-frontend-seven.vercel.app/](https://hrms-lite-frontend-seven.vercel.app/)
+---
 
-Backend API:
-[https://hrms-lite-backend-czi9.onrender.com/](https://hrms-lite-backend-czi9.onrender.com/)
+##  Live Links
+Frontend: https://hrms-lite-frontend-seven.vercel.app/
+Backend API: https://hrms-lite-backend-czi9.onrender.com/
+
+---
+
+Overview
+
+HRMS Lite is a full-stack Employee & Attendance Management System that allows organizations to manage employees, track attendance, and monitor daily activity through a simple and responsive interface.
 
 ---
 
 ## Features
 
-* View all employees
-* Add employees
-* Check-in / Check-out
-* Attendance records
-* Dashboard summary
-* Filter attendance by date
-* Connected to live backend
-* Responsive UI
+### Frontend
 
----
+- View all employees
+- Add employees
+- Check-in / Check-out functionality
+- Attendance records dashboard
+- Filter attendance by date
+- Responsive UI
+- Connected to live backend API
 
-## Tech Stack
+### Backend
 
-* React.js
-* Axios
-* CSS
-* Vercel (deployment)
-* Express + Prisma backend
-* PostgreSQL database
+- Add employee
+- Get all employees
+- Delete employee
+- Check-in / Check-out tracking
+- Attendance by employee
+- RESTful API
+- Prisma ORM with PostgreSQL
 
 ---
 
 ## Project Structure
 
-src/
-├── api/
-│    └── api.js
-├── App.js
-├── index.js
-└── components/
+```
+project-root/
+│
+├── frontend/
+│   ├── src/
+│   │   ├── api/
+│   │   ├── components/
+│   │   ├── App.js
+│   │   └── index.js
+│
+├── backend/
+│   ├── prisma/
+│   │   └── schema.prisma
+│   ├── server.js
+│   └── package.json
+│
+└── README.md
+```
 
 ---
 
-## Local Setup
+##  Tech Stack
 
-Clone repo:
-git clone https://github.com/YOUR-USERNAME/hrms-lite-frontend.git
-cd hrms-lite-frontend
+### Frontend
 
+- React.js
+- Axios
+- CSS
+- Vercel (Deployment)
 
-Install dependencies:
+### Backend
+
+- Node.js
+- Express.js
+- Prisma ORM
+- PostgreSQL
+- Render (Deployment)
+- dotenv, CORS
+
+---
+
+## 🚀 Installation & Setup
+
+### 1. Clone Repository
+
+```
+git clone https://github.com/YOUR-USERNAME/hrms-lite.git
+cd hrms-lite
+```
+
+---
+
+### 2. Setup Backend
+
+```
+cd backend
 npm install
+```
 
-Run locally:
+Create `.env` file:
+
+```
+DATABASE_URL="your_postgresql_connection_string"
+PORT=5000
+```
+
+Run migrations:
+
+```
+npx prisma migrate dev
+npx prisma generate
+```
+
+Start server:
+
+```
 npm start
+```
 
+Server runs on:
 
-## API Configuration
+```
+http://localhost:5000
+```
+
+---
+
+### 3. Setup Frontend
+
+```
+cd frontend
+npm install
+npm start
+```
+
+---
+
+##  API Configuration (Frontend)
 
 File: `src/api/api.js`
 
+```
 import axios from "axios";
+
 const API = axios.create({
   baseURL: "https://hrms-lite-backend-czi9.onrender.com"
 });
+
 export default API;
-
----
-## Deployment
-
-Frontend deployed using Vercel
-
-Steps:
-
-1. Push repo to GitHub
-2. Import in Vercel
-3. Deploy
+```
 
 ---
 
-## Test Steps
+##  API Endpoints
 
-1. Open website
-2. Add employee
-3. Click Check-In
-4. Click Check-Out
+### Root
+
+```
+GET /
+```
+
+### Employees
+
+```
+POST   /employees
+GET    /employees
+DELETE /employees/:id
+```
+
+### Attendance
+
+```
+POST /attendance/checkin
+POST /attendance/checkout
+GET  /attendance/:employeeId
+```
+
+---
+
+##  Test Steps
+
+1. Open frontend URL
+2. Add a new employee
+3. Perform Check-In
+4. Perform Check-Out
 5. View attendance dashboard
 
 ---
 
-## Author
+##  Database
 
-Ashutosh
-HRMS Lite Full-Stack Assignment Submission
+* PostgreSQL with Prisma ORM
+
+Open Prisma Studio:
+
+```
+npx prisma studio
+```
 
 ---
 
-## Notes
+##  Deployment
 
-* Backend is on Render free tier
-* Use live link for testing
+### Frontend (Vercel)
+
+1. Push repo to GitHub
+2. Import project into Vercel
+3. Deploy
+
+### Backend (Render)
+
+1. Push backend to GitHub
+2. Create Web Service on Render
+3. Add environment variable:
+
+   ```
+   DATABASE_URL=your_database_url
+   ```
+4. Build Command:
+
+   ```
+   npm install && npx prisma generate
+   ```
+5. Start Command:
+
+   ```
+   node server.js
+   ```
+
+---
+
+##  Important Notes
+
+- Never commit `.env` file
+- Keep database credentials private
+- Add to `.gitignore`:
+
+```
+.env
+node_modules
+```
+
+* Backend is deployed on Render free tier
+
+---
+
+##  Author
+
+Ashutosh Kumar
+HRMS Lite – Full Stack
+
+---
