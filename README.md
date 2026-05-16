@@ -1,61 +1,79 @@
-# HRMS Lite – Full Stack Application
+# Team Task Management System – Full Stack Application
 
-Employee & Attendance Management System
+A modern Full Stack Team Collaboration & Task Management Platform built using React, Node.js, Express, PostgreSQL, and Prisma ORM.
 
 ---
 
-##  Live Links
+# 🌐 Live Links
+
 Frontend: https://hrms-lite-frontend-seven.vercel.app/
 
 Backend API: https://hrms-lite-backend-czi9.onrender.com/
 
 ---
 
-Overview
+# 📌 Overview
 
-HRMS Lite is a full-stack Employee & Attendance Management System that allows organizations to manage employees, track attendance, and monitor daily activity through a simple and responsive interface.
+Team Task Management System is a full-stack collaborative productivity platform that helps teams manage projects, assign tasks, track progress, and monitor work efficiently through a responsive modern dashboard.
+
+The application supports authentication, project collaboration, task assignment, task status tracking, and dashboard analytics.
 
 ---
 
-## Features
+# ✨ Features
 
-### Frontend
+## Frontend Features
 
-- View all employees
-- Add employees
-- Check-in / Check-out functionality
-- Attendance records dashboard
-- Filter attendance by date
+- User Authentication (Login/Register)
+- Protected Routes
+- Dashboard Analytics
+- Create & Manage Projects
+- Create & Assign Tasks
+- Update Task Status
+- Project Member Management
 - Responsive UI
-- Connected to live backend API
-
-### Backend
-
-- Add employee
-- Get all employees
-- Delete employee
-- Check-in / Check-out tracking
-- Attendance by employee
-- RESTful API
-- Prisma ORM with PostgreSQL
+- Real-time API Integration
+- Toast Notifications
+- Loading & Error States
 
 ---
 
-## Project Structure
+## Backend Features
 
-```
+- JWT Authentication
+- RESTful APIs
+- Prisma ORM with PostgreSQL
+- Project Management APIs
+- Task Management APIs
+- Dashboard Statistics APIs
+- Validation & Error Handling
+- Protected Routes Middleware
+- Secure Password Hashing
+
+---
+
+# 🏗️ Project Structure
+
+```bash
 project-root/
 │
 ├── frontend/
 │   ├── src/
 │   │   ├── api/
 │   │   ├── components/
+│   │   ├── pages/
+│   │   ├── context/
+│   │   ├── routes/
+│   │   ├── layouts/
 │   │   ├── App.js
 │   │   └── index.js
 │
 ├── backend/
+│   ├── controllers/
+│   ├── middleware/
 │   ├── prisma/
 │   │   └── schema.prisma
+│   ├── routes/
 │   ├── server.js
 │   └── package.json
 │
@@ -64,91 +82,145 @@ project-root/
 
 ---
 
-##  Tech Stack
+# 🛠️ Tech Stack
 
-### Frontend
+## Frontend
 
 - React.js
+- React Router DOM
 - Axios
-- CSS
+- Tailwind CSS
+- React Hot Toast
+- React Icons
 - Vercel (Deployment)
 
-### Backend
+---
+
+## Backend
 
 - Node.js
 - Express.js
 - Prisma ORM
 - PostgreSQL
-- Render (Deployment)
-- dotenv, CORS
+- JWT Authentication
+- bcryptjs
+- express-validator
+- dotenv
+- CORS
+- Render / Railway Deployment
 
 ---
 
-## 🚀 Installation & Setup
+# 🚀 Installation & Setup
 
-### 1. Clone Repository
+## 1️⃣ Clone Repository
 
-```
-git clone https://github.com/YOUR-USERNAME/hrms-lite.git
-cd hrms-lite
+```bash
+git clone https://github.com/YOUR-USERNAME/task-management-system.git
+cd task-management-system
 ```
 
 ---
 
-### 2. Setup Backend
+# ⚙️ Backend Setup
 
-```
+## 2️⃣ Install Backend Dependencies
+
+```bash
 cd backend
 npm install
 ```
 
-Create `.env` file:
+---
 
-```
+## 3️⃣ Create `.env` File
+
+```env
 DATABASE_URL="your_postgresql_connection_string"
+JWT_SECRET="your_secret_key"
 PORT=5000
 ```
 
-Run migrations:
+---
 
-```
+## 4️⃣ Run Prisma Migration
+
+```bash
 npx prisma migrate dev
+```
+
+---
+
+## 5️⃣ Generate Prisma Client
+
+```bash
 npx prisma generate
 ```
 
-Start server:
+---
 
-```
+## 6️⃣ Start Backend Server
+
+```bash
 npm start
 ```
 
 Server runs on:
 
-```
+```bash
 http://localhost:5000
 ```
 
 ---
 
-### 3. Setup Frontend
+# 💻 Frontend Setup
 
-```
+## 7️⃣ Install Frontend Dependencies
+
+```bash
 cd frontend
 npm install
-npm start
 ```
 
 ---
 
-##  API Configuration (Frontend)
+## 8️⃣ Create Frontend `.env`
 
-File: `src/api/api.js`
-
+```env
+REACT_APP_API_URL=https://hrms-lite-backend-czi9.onrender.com/api
 ```
+
+---
+
+## 9️⃣ Start Frontend
+
+```bash
+npm start
+```
+
+Frontend runs on:
+
+```bash
+http://localhost:3000
+```
+
+---
+
+# 🔌 API Configuration
+
+File:
+
+```bash
+src/api/api.js
+```
+
+Example:
+
+```js
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://hrms-lite-backend-czi9.onrender.com"
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
 export default API;
@@ -156,102 +228,151 @@ export default API;
 
 ---
 
-##  API Endpoints
+# 📡 API Endpoints
 
-### Root
+# 🔐 Authentication
 
-```
-GET /
-```
-
-### Employees
-
-```
-POST   /employees
-GET    /employees
-DELETE /employees/:id
-```
-
-### Attendance
-
-```
-POST /attendance/checkin
-POST /attendance/checkout
-GET  /attendance/:employeeId
+```http
+POST /api/auth/register
+POST /api/auth/login
+GET  /api/auth/profile
 ```
 
 ---
 
-##  Test Steps
+# 📁 Projects
 
-1. Open frontend URL
-2. Add a new employee
-3. Perform Check-In
-4. Perform Check-Out
-5. View attendance dashboard
+```http
+GET    /api/projects
+POST   /api/projects
+PUT    /api/projects/:projectId
+DELETE /api/projects/:projectId
+POST   /api/projects/:projectId/members
+DELETE /api/projects/:projectId/members/:userId
+```
 
 ---
 
-##  Database
+# ✅ Tasks
 
-* PostgreSQL with Prisma ORM
+```http
+GET    /api/tasks
+POST   /api/tasks
+PUT    /api/tasks/:taskId
+PATCH  /api/tasks/:taskId/status
+DELETE /api/tasks/:taskId
+```
+
+---
+
+# 📊 Dashboard
+
+```http
+GET /api/dashboard/stats
+```
+
+---
+
+# 🧪 Test Workflow
+
+1. Register a new user
+2. Login using credentials
+3. Create a project
+4. Add team members
+5. Create tasks
+6. Assign tasks
+7. Update task status
+8. View dashboard analytics
+
+---
+
+# 🗄️ Database
+
+PostgreSQL with Prisma ORM
 
 Open Prisma Studio:
 
-```
+```bash
 npx prisma studio
 ```
 
 ---
 
-##  Deployment
+# 🚀 Deployment
 
-### Frontend (Vercel)
+## Frontend Deployment (Vercel)
 
-1. Push repo to GitHub
+1. Push frontend to GitHub
 2. Import project into Vercel
-3. Deploy
-
-### Backend (Render)
-
-1. Push backend to GitHub
-2. Create Web Service on Render
 3. Add environment variable:
 
-   ```
-   DATABASE_URL=your_database_url
-   ```
+```env
+REACT_APP_API_URL=https://hrms-lite-backend-czi9.onrender.com/api
+```
+
+4. Deploy
+
+---
+
+## Backend Deployment (Render / Railway)
+
+1. Push backend to GitHub
+2. Create Web Service
+3. Add environment variables:
+
+```env
+DATABASE_URL=your_database_url
+JWT_SECRET=your_secret
+PORT=5000
+```
+
 4. Build Command:
 
-   ```
-   npm install && npx prisma generate
-   ```
+```bash
+npm install && npx prisma generate
+```
+
 5. Start Command:
 
-   ```
-   node server.js
-   ```
+```bash
+node server.js
+```
 
 ---
 
-##  Important Notes
+# 🔒 Important Notes
 
-- Never commit `.env` file
-- Keep database credentials private
+- Never commit `.env` files
+- Keep JWT secret private
 - Add to `.gitignore`:
 
-```
+```bash
 .env
 node_modules
+build
 ```
-
-* Backend is deployed on Render free tier
 
 ---
 
-##  Author
+# 👨‍💻 Author
 
 Ashutosh Kumar
-HRMS Lite – Full Stack
+
+Full Stack Developer
+
+GitHub:
+https://github.com/Ashu-ux
+
+---
+
+# ⭐ Project Highlights
+
+- Full Stack MERN-style Architecture
+- PostgreSQL + Prisma ORM
+- JWT Authentication
+- RESTful APIs
+- Modern Responsive UI
+- Production Deployment Ready
+- Team Collaboration Features
 
 ---
